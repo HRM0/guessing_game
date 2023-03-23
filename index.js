@@ -9,12 +9,14 @@ let guesses = [];
 button.addEventListener("click", function () {
   guesses.push(fillAnswer.value);
 
-  if (number == fillAnswer.value) {
+  if (guesses.length > 5){
+    game_text.innerHTML = "You Lose!";
+    game_text.style.backgroundColor = "blue";
+
+  } else if (number == fillAnswer.value) {
     game_text.innerHTML = "You Win!";
     game_text.style.backgroundColor = "red";
-  } else if (guesses.length > 5){
-    console.log("You Lose");
-
+    
   } else {
      for (let i = 0; i < guesses.length; i++) {
       let answer = document.querySelector(`.g${i}`);
@@ -38,8 +40,8 @@ reset.addEventListener("click", function () {
 })
 
 hint.addEventListener("click", function () {
-  let high = Math.floor(Math.random()*10) + number
-  let low = number - Math.floor(Math.random()*10)
+  let high = Math.ceil(Math.random()*10) + number
+  let low = number - Math.ceil(Math.random()*10)
   game_text.innerHTML = `the number is between ${low} and ${high}`
 })
 
